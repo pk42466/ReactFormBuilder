@@ -4,7 +4,7 @@
         "name": "firstName",
         "label": "First Name",
         "value": "",
-        "required": false,
+        "required": true,
         "validations": {
             
         }
@@ -40,7 +40,7 @@
         "type": "radioGroup",
         "name": "ageGroup",
         "label": "Age group",
-        "required": false,
+        "required": true,
         "children": [
             "18+",
             "below 18"

@@ -103,4 +103,4 @@ export class FormBuilder extends React.Component {
     }
 };
 
-export { Textbox, Radio };
+export { Textbox, Radio, Select };
