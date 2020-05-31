@@ -1,17 +1,43 @@
 import React from 'react';
 import { FormBuilder } from './forms';
 import './App.css';
-import * as formData from './form.json';
+// import * as formData from './form.json';
+import HttpClient from './httpClient'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      formData: ""
+      formData: [],
+      fields: []
     };
-    this.fields = formData.default;
+    this.http = new HttpClient();
   }
-
+  componentDidMount() {
+    // this.getFormData();
+    this.http.fetch({
+      url: `/form.json`,
+      method: "GET"
+    }).then(data => {
+      console.log(data);
+      this.setState({
+        fields: [...data]
+      });
+    }).catch(error => {
+      console.log(error);
+    }) 
+  }
+  // async getFormData() {
+  //   const data = await this.http.fetch({
+  //     url: `/form.json`,
+  //     method: "GET"
+  //   });
+  //   this.setState({
+  //     fields: data
+  //   });
+  //   // console.log(this.state.fields)
+  //   console.log("State is set");
+  // }
   submit(values) {
     const data = this.renderObj(values);
     this.setState({
@@ -35,7 +61,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h2>Form builder example:</h2>
-        <FormBuilder onSubmit={this.submit.bind(this)} fields={this.fields} />
+        <FormBuilder onSubmit={this.submit.bind(this)} fields={this.state.fields} />
         {this.state.formData ? <div>Form values: {this.state.formData}</div> : ''}
       </div>
     );

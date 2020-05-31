@@ -18,6 +18,6 @@ export class SubmitButton extends React.Component {
 
 
     render() {
-        return <input type="submit" value={this.state.value} onClick={this.handleSubmit.bind(this)} />
+        return <input type="submit" value={this.props.value} onClick={this.handleSubmit.bind(this)} />
     }
 }

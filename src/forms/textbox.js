@@ -6,32 +6,26 @@ export class Textbox extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.state = {
-            value: this.props.value || "",
-            required: this.props.required || false,
-            name: this.props.name
+            value: this.props.value
         }
     }
 
 
     handleChange(e) {
-        this.setState({
-            value: e.target.value
-        });
+        this.setState({ value: e.target.value });
         if (this.props.onChange) {
-            this.props.onChange({ name: this.state.name, value: this.state.value });
+            this.props.onChange({ name: this.props.name, value: e.target.value });
         }
     };
 
 
     handleBlur(e) {
-        this.setState({
-            value: e.target.value
-        });
+        this.setState({ value: e.target.value });
         if (this.props.onBlur) {
-            this.props.onBlur({ name: this.state.name, value: this.state.value });
+            this.props.onBlur({ name: this.props.name, value: e.target.value });
         }
         if (this.props.onChange) {
-            this.props.onChange({ name: this.state.name, value: this.state.value });
+            this.props.onChange({ name: this.props.name, value: e.target.value });
         }
     }
 
@@ -40,8 +34,8 @@ export class Textbox extends React.Component {
         return <input
             type="text"
             value={this.state.value}
-            required={this.state.required}
-            name={this.state.name}
+            required={this.props.required}
+            name={this.props.name}
             onBlur={this.handleBlur}
             onChange={this.handleChange}
         />
