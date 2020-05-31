@@ -3,7 +3,6 @@ import React from 'react';
 export class Radio extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = {
             checked: this.props.checked || false,
         }

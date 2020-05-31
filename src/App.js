@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormBuilder } from './forms';
 import './App.css';
+import * as formData from './form.json';
 
 class App extends React.Component {
   constructor() {
@@ -8,44 +9,7 @@ class App extends React.Component {
     this.state = {
       formData: ""
     };
-    this.fields = [
-      {
-        type: 'textbox',
-        name: 'firstName',
-        label: 'First Name',
-        value: '',
-        required: false
-      },
-      {
-        type: 'textbox',
-        name: 'lastName',
-        label: 'Last Name',
-        value: '',
-        required: false
-      },
-      {
-        type: 'select',
-        name: 'favMovie',
-        label: 'Choose your favourite movie',
-        requied: true,
-        options: [
-          { value: "", text: "---"},
-          { value: "avenger", text: "Avenger the end game"},
-          { value: 'gandhi', text: "Great Ghandhi"}
-        ]
-      },
-      {
-        type: 'radioGroup',
-        name: 'ageGroup',
-        label: 'Age group',
-        required: false,
-        children: ['18+', 'below 18']
-      },
-      {
-        type: "submitButton",
-        value: "Submit"
-      }
-    ];
+    this.fields = formData.default;
   }
 
   submit(values) {
